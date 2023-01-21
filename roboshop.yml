@@ -1,5 +1,4 @@
 - name: roboshop setup
-  hosts: all
-  become: yes
+  hosts:  "{{HOSTS}}"
   roles:
     - "{{ROLE NAME}}"
