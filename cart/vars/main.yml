@@ -1,4 +1,3 @@
-- name: import from nodejs
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: nodejs
+component: cart
+schema load: false
+
