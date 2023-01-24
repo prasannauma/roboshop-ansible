@@ -6,11 +6,23 @@
     name: nodejs
     state: installed
 
+- name: App Pre-Req
+  ansible.builtin.include_tasks: "app-prereq.yml"
+
 
 - name: install nodejs dependencies
   community.general.npm:
     path: /app
     state: latest
+
+
+- name: SystemD Setup
+  ansible.builtin.include_tasks: "systemd.yml"
+
+- name: Load Schema
+  ansible.builtin.include_tasks: "{{schema_type}}-schema.yml"
+  when: schema_load
+
 
 
 
