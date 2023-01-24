@@ -1,0 +1,36 @@
+- name: configure node js repos
+  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+
+- name: install node js
+  ansible.builtin.yum:
+    state: installed
+
+- name: Add the application user
+  ansible.builtin.user:
+    name: roboshop
+
+- name: Remove directory
+  ansible.builtin.file:
+    path: /app
+    state: absent
+
+- name: Create a directory
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+
+- name: Unarchive a file that is already on the remote machine
+  ansible.builtin.unarchive:
+    src: /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
+    dest: /app
+    remote_src: yes
+
+- name: install nodejs dependencies
+  community.general.npm:
+    path: /app
+    state: latest
+
+
+
+
