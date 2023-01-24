@@ -12,15 +12,6 @@
     path: /app
     state: latest
 
-- name: Copy systemd file
-  ansible.builtin.copy:
-    src:  {{component}}.service
-    dest: /etc/systemd/system/{{component}}.service
-
-- name: start {{component}} service
-  ansible.builtin.systemd:
-    name: "{{component}}"
-
 
 
 
