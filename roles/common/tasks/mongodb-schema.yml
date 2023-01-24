@@ -9,6 +9,10 @@
     state: installed
 
 
-
+- name: Load Schema
+  community.mongodb.mongodb_shell:
+    login_host: mongodb-dev.umadevops.online
+    file: "/app/schema/{{component}}.js"
+    idempotent: yes
 
 
